@@ -18,6 +18,7 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.example.characters.ui.theme.CharactersTheme
+import com.example.characters.view.CharactersBottomNav
 import com.example.characters.view.CollectionScreen
 import com.example.characters.view.LibraryScreen
 
@@ -54,7 +55,7 @@ fun CharactersScaffold(navController: NavHostController) {
     val snackbarHostState = remember { SnackbarHostState() }
     Scaffold(
         snackbarHost = { SnackbarHost(hostState = snackbarHostState) },
-        bottomBar = {}
+        bottomBar = { CharactersBottomNav(navController = navController)}
 
     ) { paddingValues ->
         NavHost(navController = navController, startDestination = Destination.Library.route) {
