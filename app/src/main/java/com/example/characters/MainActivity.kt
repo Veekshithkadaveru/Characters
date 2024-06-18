@@ -23,11 +23,10 @@ import com.example.characters.view.CollectionScreen
 import com.example.characters.view.LibraryScreen
 
 sealed class Destination(val route: String) {
-    object Library : Destination("library")
-    object Collection : Destination("collection")
-    object CharacterDetail : Destination("character/{characterId}") {
+    data object Library : Destination("library")
+    data object Collection : Destination("collection")
+    data object CharacterDetail : Destination("character/{characterId}") {
         fun createRoute(characterId: Int?) = "character/{characterId}"
-
     }
 }
 
@@ -55,9 +54,9 @@ fun CharactersScaffold(navController: NavHostController) {
     val snackbarHostState = remember { SnackbarHostState() }
     Scaffold(
         snackbarHost = { SnackbarHost(hostState = snackbarHostState) },
-        bottomBar = { CharactersBottomNav(navController = navController)}
+        bottomBar = { CharactersBottomNav(navController = navController) }
 
-    ) { paddingValues ->
+    ) {
         NavHost(navController = navController, startDestination = Destination.Library.route) {
             composable(Destination.Library.route) {
                 LibraryScreen()
