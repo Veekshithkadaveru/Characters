@@ -21,6 +21,7 @@ import com.example.characters.ui.theme.CharactersTheme
 import com.example.characters.view.CharactersBottomNav
 import com.example.characters.view.CollectionScreen
 import com.example.characters.view.LibraryScreen
+import dagger.hilt.android.AndroidEntryPoint
 
 sealed class Destination(val route: String) {
     data object Library : Destination("library")
@@ -30,6 +31,7 @@ sealed class Destination(val route: String) {
     }
 }
 
+@AndroidEntryPoint
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
