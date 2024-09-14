@@ -6,6 +6,7 @@ import com.example.characters.db.CollectionDbRepo
 import com.example.characters.db.DbCharacter
 import com.example.characters.model.CharacterResult
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.launch
 import javax.inject.Inject
@@ -38,13 +39,13 @@ class CollectionDbViewModel @Inject constructor(private val repo: CollectionDbRe
     }
 
     fun addCharacter(character: CharacterResult) {
-        viewModelScope.launch {
+        viewModelScope.launch(Dispatchers.IO) {
             repo.addCharacterFromRepo(DbCharacter.fromCharacter(character))
         }
     }
 
     fun deleteCharacter(character: DbCharacter) {
-        viewModelScope.launch {
+        viewModelScope.launch(Dispatchers.IO) {
             repo.deleteCharacterFromRepo(character)
         }
     }

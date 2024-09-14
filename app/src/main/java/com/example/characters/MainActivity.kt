@@ -26,6 +26,7 @@ import com.example.characters.view.CharacterDetails
 import com.example.characters.view.CharactersBottomNav
 import com.example.characters.view.CollectionScreen
 import com.example.characters.view.LibraryScreen
+import com.example.characters.viewmodel.CollectionDbViewModel
 import com.example.characters.viewmodel.LibraryApiViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -40,6 +41,7 @@ sealed class Destination(val route: String) {
 @AndroidEntryPoint
 class MainActivity : ComponentActivity() {
     private val lvm by viewModels<LibraryApiViewModel>()
+    private val cvm by viewModels<CollectionDbViewModel>()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
@@ -50,7 +52,12 @@ class MainActivity : ComponentActivity() {
                     color = MaterialTheme.colorScheme.background
                 ) {
                     val navController = rememberNavController()
-                    CharactersScaffold(navController = navController, lvm, paddingValues = PaddingValues())
+                    CharactersScaffold(
+                        navController = navController,
+                        lvm,
+                        cvm,
+                        paddingValues = PaddingValues()
+                    )
                 }
             }
         }
@@ -59,7 +66,12 @@ class MainActivity : ComponentActivity() {
 
 @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
 @Composable
-fun CharactersScaffold(navController: NavHostController, lvm: LibraryApiViewModel,paddingValues:PaddingValues) {
+fun CharactersScaffold(
+    navController: NavHostController,
+    lvm: LibraryApiViewModel,
+    cvm:CollectionDbViewModel,
+    paddingValues: PaddingValues
+) {
     val snackbarHostState = remember { SnackbarHostState() }
     val ctx = LocalContext.current
     Scaffold(
@@ -82,6 +94,7 @@ fun CharactersScaffold(navController: NavHostController, lvm: LibraryApiViewMode
                     lvm.retrieveSingleCharacter(id)
                     CharacterDetails(
                         lvm = lvm,
+                        cvm = cvm,
                         paddingValues = paddingValues,
                         navController = navController
                     )
