@@ -7,6 +7,7 @@ import com.example.characters.db.CollectionDb
 import com.example.characters.db.CollectionDbRepo
 import com.example.characters.db.CollectionsDbRepoImpl
 import com.example.characters.db.Constants.DB
+import com.example.characters.db.NoteDao
 import com.example.characters.model.api.ApiService
 import com.example.characters.model.api.MarvelApiRepo
 import dagger.Module
@@ -29,8 +30,11 @@ class HiltModule {
     fun provideCharacterDao(collectionDb: CollectionDb) = collectionDb.characterDao()
 
     @Provides
-    fun provideDbRepoImpl(characterDao: CharacterDao): CollectionDbRepo =
-        CollectionsDbRepoImpl(characterDao)
+    fun provideNoteDao(collectionDb: CollectionDb) = collectionDb.noteDao()
+
+    @Provides
+    fun provideDbRepoImpl(characterDao: CharacterDao, noteDao: NoteDao): CollectionDbRepo =
+        CollectionsDbRepoImpl(characterDao, noteDao)
 
 
 }

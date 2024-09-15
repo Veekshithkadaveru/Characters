@@ -40,7 +40,7 @@ class CollectionDbViewModel @Inject constructor(private val repo: CollectionDbRe
 
     fun addCharacter(character: CharacterResult) {
         viewModelScope.launch(Dispatchers.IO) {
-            repo.addCharacterFromRepo(DbCharacter.fromCharacter(character))
+            repo.addCharacterToRepo(DbCharacter.fromCharacter(character))
         }
     }
 
