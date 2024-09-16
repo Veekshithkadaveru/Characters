@@ -1,4 +1,4 @@
-#Characters
+# Characters
 This repository contains the code for Marvel Characters App which is my personal project.
 
 It includes the following popular libraries:
