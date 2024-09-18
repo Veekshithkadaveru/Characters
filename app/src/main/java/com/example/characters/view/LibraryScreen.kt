@@ -37,6 +37,7 @@ import com.example.characters.CharacterImage
 import com.example.characters.Destination
 import com.example.characters.model.CharactersApiResponse
 import com.example.characters.model.api.NetworkResult
+import com.example.characters.model.connectivity.ConnectivityObservable
 import com.example.characters.viewmodel.LibraryApiViewModel
 
 @Composable
@@ -47,6 +48,8 @@ fun LibraryScreen(
 ) {
     val result by vm.result.collectAsState()
     val text = vm.queryText.collectAsState()
+    val networkAvailable =
+        vm.networkAvailable.observe().collectAsState(ConnectivityObservable.Status.Available)
 
     Column(
         modifier = Modifier
@@ -54,7 +57,22 @@ fun LibraryScreen(
             .padding(bottom = paddingValues.calculateBottomPadding()),
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
+        if (networkAvailable.value == ConnectivityObservable.Status.Unavailable) {
+            Row(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .background(Color.Red),
+                horizontalArrangement = Arrangement.Center
+            ) {
+                Text(
+                    text = "Network Unavailable",
+                    fontWeight = FontWeight.Bold,
+                    color = Color.White,
+                    modifier = Modifier.padding(16.dp)
+                )
 
+            }
+        }
         OutlinedTextField(
             value = text.value,
             onValueChange = vm::onQueryUpdate,
