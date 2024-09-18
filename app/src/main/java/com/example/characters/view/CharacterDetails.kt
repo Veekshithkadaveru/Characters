@@ -56,7 +56,7 @@ fun CharacterDetails(
         modifier = Modifier
             .fillMaxSize()
             .padding(4.dp)
-            .padding(bottom = paddingValues.calculateBottomPadding())
+            .padding(bottom = paddingValues.calculateBottomPadding()+30.dp)
             .verticalScroll(
                 rememberScrollState()
             ),
@@ -94,7 +94,7 @@ fun CharacterDetails(
                 if (!inCollection && character != null)
                     cvm.addCharacter(character)
             },
-            modifier = Modifier.padding(bottom = 20.dp)
+            modifier = Modifier.padding(bottom = 30.dp)
         ) {
             if (!inCollection) {
                 Column(

@@ -5,6 +5,7 @@ import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
+
 import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -215,5 +216,6 @@ fun CreateNoteForm(characterId: Int, cvm: CollectionDbViewModel) {
     }
     Button(onClick = { addNoteToElement.intValue = characterId }) {
         Icon(Icons.Default.Add, contentDescription = null)
+        Text(text = "Add Note")
     }
 }
