@@ -10,6 +10,7 @@ import com.example.characters.db.Constants.DB
 import com.example.characters.db.NoteDao
 import com.example.characters.model.api.ApiService
 import com.example.characters.model.api.MarvelApiRepo
+import com.example.characters.model.connectivity.ConnectivityMonitor
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -36,5 +37,7 @@ class HiltModule {
     fun provideDbRepoImpl(characterDao: CharacterDao, noteDao: NoteDao): CollectionDbRepo =
         CollectionsDbRepoImpl(characterDao, noteDao)
 
-
+    @Provides
+    fun provideConnectivityManager(@ApplicationContext context: Context) =
+        ConnectivityMonitor.getInstance(context)
 }
