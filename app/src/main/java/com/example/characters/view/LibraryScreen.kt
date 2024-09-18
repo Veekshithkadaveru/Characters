@@ -1,7 +1,6 @@
 package com.example.characters.view
 
 import android.widget.Toast
-import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
@@ -28,7 +27,6 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
-import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.unit.dp
@@ -37,7 +35,6 @@ import androidx.navigation.NavHostController
 import com.example.characters.AttributionText
 import com.example.characters.CharacterImage
 import com.example.characters.Destination
-import com.example.characters.R
 import com.example.characters.model.CharactersApiResponse
 import com.example.characters.model.api.NetworkResult
 import com.example.characters.viewmodel.LibraryApiViewModel
@@ -67,7 +64,9 @@ fun LibraryScreen(
         )
 
         Column(
-            modifier = Modifier.fillMaxSize().padding(bottom = 120.dp),
+            modifier = Modifier
+                .fillMaxSize()
+                .padding(bottom = 120.dp),
             horizontalAlignment = Alignment.CenterHorizontally,
             verticalArrangement = Arrangement.Center
         ) {
@@ -78,11 +77,13 @@ fun LibraryScreen(
                         text = "Search for a character",
                         fontSize = 20.sp
                     )
-                    Image(
-                        modifier = Modifier.padding(12.dp),
-                        painter = painterResource(id = R.drawable.civilwar),
-                        contentDescription = null
-                    )
+                    /*   Image(
+                           modifier = Modifier.padding(12.dp),
+                           painter = painterResource(id = R.drawable.civilwar),
+                           contentDescription = null
+                       )
+
+                     */
                 }
 
                 is NetworkResult.Success -> {
