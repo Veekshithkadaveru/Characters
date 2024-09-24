@@ -5,7 +5,6 @@ import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
-
 import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -37,6 +36,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.KeyboardType
@@ -44,6 +44,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavHostController
 import com.example.characters.CharacterImage
+import com.example.characters.R
 import com.example.characters.db.DbNote
 import com.example.characters.model.Note
 import com.example.characters.ui.theme.GrayBackground
@@ -188,7 +189,7 @@ fun CreateNoteForm(characterId: Int, cvm: CollectionDbViewModel) {
             OutlinedTextField(
                 value = newNoteTitle.value,
                 onValueChange = { newNoteTitle.value = it },
-                label = { Text(text = "Note Title") },
+                label = { Text(text = stringResource(id = R.string.note_title)) },
                 keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Text)
             )
             Row(
@@ -199,7 +200,7 @@ fun CreateNoteForm(characterId: Int, cvm: CollectionDbViewModel) {
                 OutlinedTextField(
                     value = newNoteText.value,
                     onValueChange = { newNoteText.value = it },
-                    label = { Text(text = "Note Text") },
+                    label = { Text(text = stringResource(id = R.string.note_text)) },
                     keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Text)
                 )
                 Button(onClick = {
@@ -216,6 +217,6 @@ fun CreateNoteForm(characterId: Int, cvm: CollectionDbViewModel) {
     }
     Button(onClick = { addNoteToElement.intValue = characterId }) {
         Icon(Icons.Default.Add, contentDescription = null)
-        Text(text = "Add Note")
+        Text(text = stringResource(id = R.string.add_note))
     }
 }

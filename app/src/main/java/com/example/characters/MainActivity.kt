@@ -17,6 +17,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.res.stringResource
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
@@ -89,7 +90,7 @@ fun CharactersScaffold(
             composable(Destination.CharacterDetail.route) { navBackStackEntry ->
                 val id = navBackStackEntry.arguments?.getString("characterId")?.toIntOrNull()
                 if (id == null)
-                    Toast.makeText(ctx, "Character id is required", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(ctx, stringResource(id = R.string.characterId_required), Toast.LENGTH_SHORT).show()
                 else {
                     lvm.retrieveSingleCharacter(id)
                     CharacterDetails(

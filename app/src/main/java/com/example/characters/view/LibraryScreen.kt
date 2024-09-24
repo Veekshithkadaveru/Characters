@@ -27,6 +27,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.unit.dp
@@ -35,6 +36,7 @@ import androidx.navigation.NavHostController
 import com.example.characters.AttributionText
 import com.example.characters.CharacterImage
 import com.example.characters.Destination
+import com.example.characters.R
 import com.example.characters.model.CharactersApiResponse
 import com.example.characters.model.api.NetworkResult
 import com.example.characters.model.connectivity.ConnectivityObservable
@@ -65,7 +67,7 @@ fun LibraryScreen(
                 horizontalArrangement = Arrangement.Center
             ) {
                 Text(
-                    text = "Network Unavailable",
+                    text = stringResource(id = R.string.network_unavailable),
                     fontWeight = FontWeight.Bold,
                     color = Color.White,
                     modifier = Modifier.padding(16.dp)
@@ -77,7 +79,7 @@ fun LibraryScreen(
             value = text.value,
             onValueChange = vm::onQueryUpdate,
             label = { Text(text = "Character search") },
-            placeholder = { Text(text = "Character") },
+            placeholder = { Text(text = stringResource(id = R.string.app_name)) },
             keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Text)
         )
 
@@ -92,16 +94,9 @@ fun LibraryScreen(
                 is NetworkResult.Initial -> {
                     Text(
                         modifier = Modifier.padding(12.dp),
-                        text = "Search for a character",
+                        text = stringResource(id = R.string.search_character),
                         fontSize = 20.sp
                     )
-                    /*   Image(
-                           modifier = Modifier.padding(12.dp),
-                           painter = painterResource(id = R.drawable.civilwar),
-                           contentDescription = null
-                       )
-
-                     */
                 }
 
                 is NetworkResult.Success -> {
@@ -126,6 +121,7 @@ fun ShowCharactersList(
     result: NetworkResult<CharactersApiResponse>,
     navController: NavHostController
 ) {
+    val nullCharacterMessage = stringResource(id = R.string.null_character)
     result.data?.data?.results?.let { characters ->
         LazyColumn(
             modifier = Modifier.background(Color.LightGray),
@@ -157,7 +153,7 @@ fun ShowCharactersList(
                                 navController.navigate(Destination.CharacterDetail.createRoute(id))
                             else
                                 Toast
-                                    .makeText(context, "Character id is null", Toast.LENGTH_SHORT)
+                                    .makeText(context, nullCharacterMessage, Toast.LENGTH_SHORT)
                                     .show()
                         }
                 ) {

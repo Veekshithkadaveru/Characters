@@ -20,6 +20,7 @@ import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
@@ -30,6 +31,7 @@ import com.example.characters.Destination
 import com.example.characters.comicsToString
 import com.example.characters.viewmodel.CollectionDbViewModel
 import com.example.characters.viewmodel.LibraryApiViewModel
+import com.example.characters.R
 
 @Composable
 fun CharacterDetails(
@@ -56,7 +58,7 @@ fun CharacterDetails(
         modifier = Modifier
             .fillMaxSize()
             .padding(4.dp)
-            .padding(bottom = paddingValues.calculateBottomPadding()+30.dp)
+            .padding(bottom = paddingValues.calculateBottomPadding() + 30.dp)
             .verticalScroll(
                 rememberScrollState()
             ),
@@ -102,7 +104,7 @@ fun CharacterDetails(
                     modifier = Modifier.fillMaxWidth()
                 ) {
                     Icon(Icons.Default.Add, contentDescription = null)
-                    Text(text = "Add to Collection")
+                    Text(text = stringResource(id = R.string.add_to_collection))
                 }
             } else {
                 Column(
@@ -110,11 +112,9 @@ fun CharacterDetails(
                     modifier = Modifier.fillMaxWidth()
                 ) {
                     Icon(Icons.Default.Check, contentDescription = null)
-                    Text(text = "Added")
+                    Text(text = stringResource(id = R.string.added ))
                 }
             }
         }
-
     }
-
 }
