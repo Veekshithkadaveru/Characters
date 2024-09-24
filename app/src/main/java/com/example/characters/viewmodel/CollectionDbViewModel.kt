@@ -24,7 +24,6 @@ class CollectionDbViewModel @Inject constructor(private val repo: CollectionDbRe
         getNotes()
     }
 
-
     private fun getCollection() {
         viewModelScope.launch {
             repo.getCharactersFromRepo().collect {
@@ -75,5 +74,4 @@ class CollectionDbViewModel @Inject constructor(private val repo: CollectionDbRe
             repo.deleteNoteFromRepo(note)
         }
     }
-
 }

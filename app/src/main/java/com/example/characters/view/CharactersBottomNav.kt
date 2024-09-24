@@ -34,6 +34,5 @@ fun CharactersBottomNav(navController: NavHostController) {
             icon = { Icon(painter = iconCollection, contentDescription = null) },
             label = { Text(text = Destination.Collection.route)}
         )
-
     }
 }

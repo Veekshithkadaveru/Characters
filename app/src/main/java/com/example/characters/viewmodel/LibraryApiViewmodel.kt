@@ -6,6 +6,7 @@ import com.example.characters.model.api.MarvelApiRepo
 import com.example.characters.model.connectivity.ConnectivityMonitor
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.FlowPreview
 import kotlinx.coroutines.channels.Channel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.debounce
@@ -29,6 +30,7 @@ class LibraryApiViewModel @Inject constructor(
         retrieveCharacters()
     }
 
+    @OptIn(FlowPreview::class)
     private fun retrieveCharacters() {
         viewModelScope.launch(Dispatchers.IO) {
             queryInput.receiveAsFlow()

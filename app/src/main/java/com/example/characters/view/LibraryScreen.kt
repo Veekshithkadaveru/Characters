@@ -72,7 +72,6 @@ fun LibraryScreen(
                     color = Color.White,
                     modifier = Modifier.padding(16.dp)
                 )
-
             }
         }
         OutlinedTextField(
@@ -112,7 +111,6 @@ fun LibraryScreen(
                 }
             }
         }
-
     }
 }
 
@@ -169,7 +167,6 @@ fun ShowCharactersList(
                             Text(text = title ?: "", fontWeight = FontWeight.Bold, fontSize = 20.sp)
                         }
                     }
-
                     Text(text = description ?: "", maxLines = 4, fontSize = 14.sp)
                 }
             }
